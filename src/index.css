@@ -22,7 +22,10 @@ p{margin:0}
 .hdr{position:fixed;top:0;left:0;right:0;z-index:60;padding-top:env(safe-area-inset-top,0px);transition:background .35s,color .35s,box-shadow .35s;color:#fff}
 .hdr.solid{background:var(--white);color:var(--ink);box-shadow:0 1px 0 var(--line)}
 .hdr .bar{display:flex;align-items:center;justify-content:space-between;height:56px;padding-inline:clamp(16px,3vw,40px);gap:16px}
-.logo{font-weight:700;letter-spacing:.42em;font-size:15px;text-decoration:none;padding-left:.42em}
+.logo{font-weight:700;letter-spacing:.42em;font-size:15px;text-decoration:none;padding-left:.42em;display:flex;align-items:center;gap:10px}
+.logo .mark{height:46px;width:auto;margin-left:-.42em}
+.logo .mark-dark,.hdr.solid .logo .mark-light{display:none}
+.hdr.solid .logo .mark-dark{display:block}
 .hdr nav{display:flex;gap:4px}
 .hdr nav a{text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:4px;transition:background .25s}
 .hdr nav a:hover{background:rgba(127,127,127,.18)}
