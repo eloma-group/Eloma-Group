@@ -34,6 +34,7 @@ export default function Contact({ topic, onTopic }: Props) {
     try {
       const res = await fetch(FORM_AJAX, {
         method: 'POST',
+        referrerPolicy: 'strict-origin-when-cross-origin', // FormSubmit needs the Referer; Azure sends Referrer-Policy: same-origin
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           Name: `${n} ${get('last')}`.trim(),
