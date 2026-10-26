@@ -23,7 +23,7 @@ export const SECTIONS: Record<string, string> = {
 
 export const PHONE = '1800 054 555'
 export const TEL = 'tel:+611800054555'
-export const EMAIL = 'connect@elomagroup.com.au'
+export const EMAIL = 'help@elomagroup.org'
 export const HQ = '71 Gipps Street, Collingwood VIC 3066'
 export const ABN = '69 683 543 713'
 
