@@ -1,9 +1,7 @@
-export const U = (id: string, w = 2400, q = 80) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=${q}`
-
-/* Responsive srcset so phones download a phone-sized photo */
-export const SRCSET = (id: string, widths: [number, number][]) =>
-  widths.map(([w, q]) => `${U(id, w, q)} ${w}w`).join(', ')
+/* Self-hosted photos in /img (scripts/images.mjs). Widths must match the files that script builds */
+export const PHOTO_WIDTHS = { panel: [640, 1080, 1600, 2400], card: [480, 900], office: [640, 1000, 1400] }
+export const IMG = (name: string, ext: 'avif' | 'webp', widths: number[]) =>
+  widths.map(w => `/img/${name}-${w}.${ext} ${w}w`).join(', ')
 
 /* Clean URL for each homepage section (no #). /about is reserved for a separate About page. */
 export const SECTIONS: Record<string, string> = {
@@ -44,31 +42,31 @@ export interface Company {
 export const COS: Company[] = [
   {
     id: 'bivry', name: 'Bivry', kick: 'Logistics', sub: 'Reliable. Trackable. Trusted.',
-    img: '1766785368863-f2188a8c8b32', alt: 'Two semi-trailers on an Australian highway', g: ['#B86A2E', '#2B160A'],
+    img: 'truck', alt: 'Two semi-trailers on an Australian highway', g: ['#B86A2E', '#2B160A'],
     specs: [['96.2%', 'On-time delivery'], ['24/7', 'GPS tracking'], ['Australia', 'Wide coverage']],
     url: 'https://bivry.com.au', cta: 'Get a Freight Quote', more: 'Bivry',
   },
   {
     id: 'eg-imports', name: 'EG Imports', kick: 'Imports', sub: 'Sourced overseas. Landed properly.',
-    img: '1578575437130-527eed3abbec', alt: 'Cargo ships docked at a port', g: ['#1F7A86', '#08262B'],
+    img: 'port', alt: 'Cargo ships docked at a port', g: ['#1F7A86', '#08262B'],
     specs: [['Sourcing', 'Trusted suppliers'], ['Customs', 'Compliance handled'], ['Landed', 'Ready to sell']],
     url: SECTIONS.services, cta: 'Start Importing', more: 'EG Imports',
   },
   {
     id: 'eg-eloma', name: 'EG Eloma', kick: 'IT Infrastructure', sub: 'Microsoft Partner · Cybersecurity · Digital Growth',
-    img: '1791317771424-82cf79f51fb3', alt: 'Two IT specialists smiling at a laptop in a bright office', g: ['#1E4F9A', '#06142B'],
+    img: 'it-team', alt: 'Two IT specialists smiling at a laptop in a bright office', g: ['#1E4F9A', '#06142B'],
     specs: [['99.9%', 'System uptime'], ['178+', 'Threats blocked daily'], ['14', 'Industries served']],
     url: 'https://egeloma.com.au', cta: 'Book a Free Consultation', more: 'EG Eloma',
   },
   {
     id: 'eg-travels', name: 'EG Travels', kick: 'Travel', sub: 'Corporate and leisure travel, handled.',
-    img: '1543797414-a0c3ad076f7c', alt: 'Clouds seen through an aeroplane window', g: ['#5D88B8', '#16253A'],
+    img: 'plane-window', alt: 'Clouds seen through an aeroplane window', g: ['#5D88B8', '#16253A'],
     specs: [['Flights', '& accommodation'], ['Corporate', 'Travel programs'], ['Holidays', 'Tailored packages']],
     url: SECTIONS.services, cta: 'Plan Your Trip', more: 'EG Travels',
   },
   {
     id: 'eloma-cx', name: 'ELOMA Customer Care', kick: 'Customer Experience', sub: 'The voice your customers remember.',
-    img: '1758876018582-e7573baf5306', alt: 'Customer care team member on a phone call at her desk', g: ['#6A4BB8', '#1C1236'],
+    img: 'care-desk', alt: 'Customer care team member on a phone call at her desk', g: ['#6A4BB8', '#1C1236'],
     specs: [['Inbound', '& outbound calls'], ['Omnichannel', 'Phone, email, chat'], ['Local', 'Australian standard']],
     url: SECTIONS.services, cta: 'Talk to Our Team', more: 'Customer Care',
   },
@@ -83,12 +81,12 @@ export interface Service {
 }
 
 export const SERV: Service[] = [
-  { t: 'Road Freight', d: 'Bivry moves full and part loads Australia-wide with live GPS tracking.', img: '1766785368863-f2188a8c8b32', to: 'bivry', g: ['#B86A2E', '#2B160A'] },
-  { t: 'Warehousing & Distribution', d: "Secure storage, pick-and-pack and distribution from Bivry's network.", img: '1553413077-190dd305871c', to: 'bivry', g: ['#8A6A4A', '#2A2016'] },
-  { t: 'Import Sourcing', d: 'EG Imports finds suppliers and manages shipping, customs and landing.', img: '1605732562742-3023a888e56e', to: 'eg-imports', g: ['#1F7A86', '#08262B'] },
-  { t: 'IT & Cybersecurity', d: 'EG Eloma delivers Microsoft 365, websites, SEO, toll-free numbers and cybersecurity, with 24/7 support.', img: '1791317771424-82cf79f51fb3', to: 'eg-eloma', g: ['#1E4F9A', '#06142B'] },
-  { t: 'Business Travel', d: 'EG Travels books flights, stays and itineraries for teams on the move.', img: '1543797414-a0c3ad076f7c', to: 'eg-travels', g: ['#5D88B8', '#16253A'] },
-  { t: 'Customer Care', d: 'Trained teams answering your customers by phone, email and chat.', img: '1758876018582-e7573baf5306', to: 'eloma-cx', g: ['#6A4BB8', '#1C1236'] },
+  { t: 'Road Freight', d: 'Bivry moves full and part loads Australia-wide with live GPS tracking.', img: 'truck', to: 'bivry', g: ['#B86A2E', '#2B160A'] },
+  { t: 'Warehousing & Distribution', d: "Secure storage, pick-and-pack and distribution from Bivry's network.", img: 'warehouse', to: 'bivry', g: ['#8A6A4A', '#2A2016'] },
+  { t: 'Import Sourcing', d: 'EG Imports finds suppliers and manages shipping, customs and landing.', img: 'sourcing', to: 'eg-imports', g: ['#1F7A86', '#08262B'] },
+  { t: 'IT & Cybersecurity', d: 'EG Eloma delivers Microsoft 365, websites, SEO, toll-free numbers and cybersecurity, with 24/7 support.', img: 'it-team', to: 'eg-eloma', g: ['#1E4F9A', '#06142B'] },
+  { t: 'Business Travel', d: 'EG Travels books flights, stays and itineraries for teams on the move.', img: 'plane-window', to: 'eg-travels', g: ['#5D88B8', '#16253A'] },
+  { t: 'Customer Care', d: 'Trained teams answering your customers by phone, email and chat.', img: 'care-desk', to: 'eloma-cx', g: ['#6A4BB8', '#1C1236'] },
 ]
 
 export interface Office {

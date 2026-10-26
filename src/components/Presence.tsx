@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { OFF, SRCSET, U } from '../data'
+import { OFF, PHOTO_WIDTHS } from '../data'
+import Photo from './Photo'
 import { useImgGuard } from '../hooks'
 
-const MEL = '1545044846-351ba102b6d5'
 
 function localTime(tz: string, now: Date) {
   try {
@@ -27,9 +27,9 @@ export default function Presence() {
     <section className="sec" id="presence" aria-labelledby="h-presence">
       <div className="wrap presence">
         <div className={`ph${failed ? ' noimg' : ''}`} id="melPh">
-          <img
+          <Photo
             {...imgProps}
-            src={U(MEL, 1000, 70)} srcSet={SRCSET(MEL, [[640, 70], [1000, 70], [1400, 72]])}
+            name="melbourne" widths={PHOTO_WIDTHS.office}
             sizes="(max-width:860px) 100vw, 640px" width="1000" height="800"
             alt="Melbourne city skyline" loading="lazy" decoding="async"
           />

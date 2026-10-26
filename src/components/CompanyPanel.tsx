@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
-import { SECTIONS, SRCSET, U } from '../data'
+import { PHOTO_WIDTHS, SECTIONS } from '../data'
+import Photo from './Photo'
 import type { Company } from '../data'
 import { useImgGuard, useInView } from '../hooks'
 
@@ -22,9 +23,9 @@ export default function CompanyPanel({ company: c, onPick }: Props) {
       aria-labelledby={`h-${c.id}`}
     >
       <div className="bg">
-        <img
+        <Photo
           {...imgProps}
-          src={U(c.img, 1600, 72)} srcSet={SRCSET(c.img, [[640, 70], [1080, 70], [1600, 72], [2400, 75]])}
+          name={c.img} widths={PHOTO_WIDTHS.panel}
           sizes="100vw" width="1600" height="1067" alt={c.alt} loading="lazy" decoding="async"
         />
       </div>

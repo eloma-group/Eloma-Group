@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
-import { SECTIONS, SERV, SRCSET, U } from '../data'
+import { PHOTO_WIDTHS, SECTIONS, SERV } from '../data'
+import Photo from './Photo'
 import type { Service } from '../data'
 import { useImgGuard } from '../hooks'
 
@@ -9,9 +10,9 @@ function Card({ s }: { s: Service }) {
     <li>
       <a className="card" href={SECTIONS[s.to]}>
         <div className={`ph${failed ? ' noimg' : ''}`} style={{ '--g1': s.g[0], '--g2': s.g[1] } as CSSProperties}>
-          <img
+          <Photo
             {...imgProps}
-            src={U(s.img, 700, 70)} srcSet={SRCSET(s.img, [[480, 70], [900, 70]])}
+            name={`${s.img}-card`} widths={PHOTO_WIDTHS.card}
             sizes="(max-width:600px) 100vw, (max-width:900px) 50vw, 420px" width="900" height="675"
             alt="" loading="lazy" decoding="async"
           />
