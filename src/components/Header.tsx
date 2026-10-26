@@ -22,8 +22,8 @@ export default function Header({ menuOpen, onMenu }: Props) {
     <header className={`hdr${solid ? ' solid' : ''}`} id="hdr">
       <div className="bar">
         <a className="logo" href="/" aria-label="ELOMA Group home">
-          <img className="mark mark-light" src="/logo-full-white.png" alt="" width="474" height="120" />
-          <img className="mark mark-dark" src="/logo-full.png" alt="" width="474" height="120" />
+          <img className="mark mark-light" src="/logo-full-white-268.webp" srcSet="/logo-full-white-134.webp 1x, /logo-full-white-268.webp 2x, /logo-full-white-402.webp 3x" alt="" width="474" height="120" />
+          <img className="mark mark-dark" src="/logo-full-268.webp" srcSet="/logo-full-134.webp 1x, /logo-full-268.webp 2x, /logo-full-402.webp 3x" alt="" width="474" height="120" />
         </a>
         <nav aria-label="Companies">
           <a href={SECTIONS.bivry}>Logistics</a><a href={SECTIONS['eg-imports']}>Imports</a><a href={SECTIONS['eg-eloma']}>Digital</a><a href={SECTIONS['eg-travels']}>Travel</a><a href={SECTIONS['eloma-cx']}>Customer Care</a>

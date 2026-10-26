@@ -70,6 +70,17 @@ for (const { photo, file, ratio, widths, focusX } of JOBS) {
   }
 }
 
+/* Header logos: shown 34px tall (~134px wide), so 1x/2x/3x WebP instead of the 474px PNGs.
+   The PNGs stay for structured data (logo in JSON-LD) */
+for (const logo of ['logo-full', 'logo-full-white']) {
+  for (const w of [134, 268, 402]) {
+    const name = `${logo}-${w}.webp`
+    if (!force && await exists(pub + name)) continue
+    await sharp(`${pub}${logo}.png`).resize(w).webp({ nearLossless: true, quality: 60, effort: 6 }).toFile(pub + name)
+    console.log(`${name}  ${Math.round((await stat(pub + name)).size / 1024)} KB`)
+  }
+}
+
 /* Social share image (og:image): crawlers want a plain JPEG at 1200x630 */
 if (force || !await exists(`${pub}og-image.jpg`)) {
   const src = await source('harbour')
