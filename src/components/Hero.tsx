@@ -1,26 +1,36 @@
 import type { CSSProperties } from 'react'
-import { useImgGuard, useInView } from '../hooks'
+import { SECTIONS, SRCSET, U } from '../data'
+import { useImgGuard } from '../hooks'
 
+const HERO = '1546268060-2592ff93ee24'
+/* Keep in sync with the preload tag in index.html */
+const HERO_SRCSET = SRCSET(HERO, [[640, 75], [1080, 78], [1600, 80], [2400, 82], [3200, 80]])
+
+/* No zoom on the hero, so the LCP image paints immediately */
 export default function Hero() {
-  const { ref, inView } = useInView<HTMLElement>()
   const { failed, imgProps } = useImgGuard()
 
   return (
     <section
-      ref={ref}
-      className={`panel-s${inView ? ' in' : ''}${failed ? ' noimg' : ''}`}
-      id="hero"
-      style={{ '--g1': '#C0783A', '--g2': '#3A1E0E' } as CSSProperties}
+      className={`panel-s${failed ? ' noimg' : ''}`}
+      id="top"
+      style={{ '--g1': '#3B6E99', '--g2': '#0E2236' } as CSSProperties}
+      aria-labelledby="h-hero"
     >
-      <div className="bg"><img {...imgProps} src="https://images.unsplash.com/photo-1737621806371-80fe6fab29e2?auto=format&fit=crop&w=2400&q=80" alt="An open road through the Australian outback" fetchPriority="high" /></div>
-      <div className="clouds" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div className="bg">
+        <img
+          {...imgProps}
+          src={U(HERO, 1600, 80)} srcSet={HERO_SRCSET} sizes="100vw" width="1600" height="1067"
+          alt="Aerial view of the Sydney Harbour Bridge and Opera House" fetchPriority="high"
+        />
+      </div>
       <div className="top">
         <p className="kick">ELOMA Group</p>
-        <h1>Five Businesses. One Standard.</h1>
+        <h1 id="h-hero">Five Businesses. One Standard.</h1>
         <p className="sub">Logistics, imports, IT, travel and customer care, across Australia.</p>
       </div>
       <div className="bottom">
-        <div className="cta"><a className="b blue" href="#bivry">Explore Companies</a><a className="b light" href="#contact">Contact Us</a></div>
+        <div className="cta"><a className="b blue" href={SECTIONS.bivry}>Explore Companies</a><a className="b light" href={SECTIONS.contact}>Contact Us</a></div>
         <svg className="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import type { MouseEvent } from 'react'
+import { SECTIONS } from '../data'
 
 interface Props {
   open: boolean
@@ -21,9 +22,9 @@ export default function Drawer({ open, onClose }: Props) {
   return (
     <div className={`drawer${open ? ' open' : ''}`} id="drawer" aria-hidden={!open} onClick={onClick}>
       <div className="panel" role="dialog" aria-label="Menu">
-        <button className="x" id="drawerX" aria-label="Close menu" onClick={onClose}>×</button>
-        <a href="#bivry">Bivry · Logistics</a><a href="#eg-imports">EG Imports</a><a href="#eg-digital">EG Digital</a><a href="#eg-travels">EG Travels</a><a href="#eloma-cx">ELOMA Customer Care</a>
-        <a href="#about">About</a><a href="#services">Services</a><a href="#presence">Offices</a><a href="#community">Community</a><a href="#contact">Contact</a>
+        <button className="x" id="drawerX" type="button" aria-label="Close menu" onClick={onClose}>×</button>
+        <a href={SECTIONS.bivry}>Bivry · Logistics</a><a href={SECTIONS['eg-imports']}>EG Imports</a><a href={SECTIONS['eg-eloma']}>EG Eloma</a><a href={SECTIONS['eg-travels']}>EG Travels</a><a href={SECTIONS['eloma-cx']}>ELOMA Customer Care</a>
+        <a href={SECTIONS.about}>About</a><a href={SECTIONS.services}>Services</a><a href={SECTIONS.presence}>Offices</a><a href={SECTIONS.countries}>Countries</a><a href={SECTIONS.community}>Community</a><a href={SECTIONS.contact}>Contact</a>
       </div>
     </div>
   )

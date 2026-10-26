@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { SECTIONS } from '../data'
 
 interface Props {
   menuOpen: boolean
@@ -20,17 +21,16 @@ export default function Header({ menuOpen, onMenu }: Props) {
   return (
     <header className={`hdr${solid ? ' solid' : ''}`} id="hdr">
       <div className="bar">
-        <a className="logo" href="#top" aria-label="ELOMA Group home">
-          <img className="mark mark-light" src="/logo-mark-white.png" alt="" width="158" height="128" />
-          <img className="mark mark-dark" src="/logo-mark.png" alt="" width="158" height="128" />
-          ELOMA
+        <a className="logo" href="/" aria-label="ELOMA Group home">
+          <img className="mark mark-light" src="/logo-full-white.png" alt="" width="474" height="120" />
+          <img className="mark mark-dark" src="/logo-full.png" alt="" width="474" height="120" />
         </a>
         <nav aria-label="Companies">
-          <a href="#bivry">Logistics</a><a href="#eg-imports">Imports</a><a href="#eg-digital">Digital</a><a href="#eg-travels">Travel</a><a href="#eloma-cx">Customer Care</a>
+          <a href={SECTIONS.bivry}>Logistics</a><a href={SECTIONS['eg-imports']}>Imports</a><a href={SECTIONS['eg-eloma']}>Digital</a><a href={SECTIONS['eg-travels']}>Travel</a><a href={SECTIONS['eloma-cx']}>Customer Care</a>
         </nav>
         <div className="right">
-          <nav aria-label="Group"><a href="#about">About</a><a href="#presence">Offices</a><a href="#contact">Contact</a></nav>
-          <button className="menu" id="menuBtn" aria-expanded={menuOpen} aria-controls="drawer" onClick={onMenu}>Menu</button>
+          <nav aria-label="Group"><a href={SECTIONS.about}>About</a><a href={SECTIONS.presence}>Offices</a><a href={SECTIONS.contact}>Contact</a></nav>
+          <button className="menu" id="menuBtn" type="button" aria-expanded={menuOpen} aria-controls="drawer" onClick={onMenu}>Menu</button>
         </div>
       </div>
     </header>
