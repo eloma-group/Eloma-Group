@@ -31,21 +31,18 @@
 <meta property="og:image:alt" content="Aerial view of the Sydney Harbour Bridge and Opera House">
 <meta name="twitter:card" content="summary_large_image">
 
-<!-- Speed: connect early, preload the right-sized hero for each screen (fixes mobile LCP) -->
+<!-- Speed: load the self-hosted hero first. Media and srcsets match the <picture> in src/components/Hero.tsx -->
+<link rel="preload" as="image" type="image/avif" fetchpriority="high"
+  media="(max-width: 600px) and (orientation: portrait)"
+  imagesrcset="/hero/tall-480.avif 480w, /hero/tall-720.avif 720w" imagesizes="100vw">
+<link rel="preload" as="image" type="image/avif" fetchpriority="high"
+  media="not all and (max-width: 600px) and (orientation: portrait)"
+  imagesrcset="/hero/wide-960.avif 960w, /hero/wide-1440.avif 1440w, /hero/wide-1920.avif 1920w, /hero/wide-2560.avif 2560w"
+  imagesizes="(max-height: 500px) 50vw, 100vw">
 <link rel="preconnect" href="https://images.unsplash.com">
-<link rel="preload" as="image" fetchpriority="high"
-  imagesrcset="https://images.unsplash.com/photo-1546268060-2592ff93ee24?auto=format&amp;fit=crop&amp;w=640&amp;q=75 640w,
-               https://images.unsplash.com/photo-1546268060-2592ff93ee24?auto=format&amp;fit=crop&amp;w=1080&amp;q=78 1080w,
-               https://images.unsplash.com/photo-1546268060-2592ff93ee24?auto=format&amp;fit=crop&amp;w=1600&amp;q=80 1600w,
-               https://images.unsplash.com/photo-1546268060-2592ff93ee24?auto=format&amp;fit=crop&amp;w=2400&amp;q=82 2400w,
-               https://images.unsplash.com/photo-1546268060-2592ff93ee24?auto=format&amp;fit=crop&amp;w=3200&amp;q=80 3200w"
-  imagesizes="100vw">
 
-<!-- Speed: font loads without blocking the first paint -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;display=swap"></noscript>
+<!-- Speed: self-hosted font (@font-face in src/index.css), preloaded so text doesn't reflow late -->
+<link rel="preload" as="font" type="font/woff2" href="/fonts/inter-tight-latin.woff2" crossorigin>
 
 <!-- SEO: structured data so Google understands the group, its companies and offices -->
 <script type="application/ld+json">

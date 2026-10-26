@@ -1,10 +1,15 @@
 import type { CSSProperties } from 'react'
-import { SECTIONS, SRCSET, U } from '../data'
+import { SECTIONS } from '../data'
 import { useImgGuard } from '../hooks'
 
-const HERO = '1546268060-2592ff93ee24'
-/* Keep in sync with the preload tag in index.html */
-const HERO_SRCSET = SRCSET(HERO, [[640, 75], [1080, 78], [1600, 80], [2400, 82], [3200, 80]])
+/* Self-hosted hero (scripts/hero-images.mjs). Keep media, srcsets and sizes in sync with the preload tags in index.html */
+const PHONE = '(max-width: 600px) and (orientation: portrait)'
+const set = (name: string, ext: string, widths: number[]) =>
+  widths.map(w => `/hero/${name}-${w}.${ext} ${w}w`).join(', ')
+const TALL = [480, 720]
+const WIDE = [960, 1440, 1920, 2560]
+/* Landscape phones get half-width files; the dark overlay hides the softness */
+const WIDE_SIZES = '(max-height: 500px) 50vw, 100vw'
 
 /* No zoom on the hero, so the LCP image paints immediately */
 export default function Hero() {
@@ -18,11 +23,16 @@ export default function Hero() {
       aria-labelledby="h-hero"
     >
       <div className="bg">
-        <img
-          {...imgProps}
-          src={U(HERO, 1600, 80)} srcSet={HERO_SRCSET} sizes="100vw" width="1600" height="1067"
-          alt="Aerial view of the Sydney Harbour Bridge and Opera House" fetchPriority="high"
-        />
+        <picture>
+          <source media={PHONE} type="image/avif" srcSet={set('tall', 'avif', TALL)} sizes="100vw" width="720" height="1200" />
+          <source media={PHONE} type="image/webp" srcSet={set('tall', 'webp', TALL)} sizes="100vw" width="720" height="1200" />
+          <source type="image/avif" srcSet={set('wide', 'avif', WIDE)} sizes={WIDE_SIZES} />
+          <img
+            {...imgProps}
+            src="/hero/wide-1440.webp" srcSet={set('wide', 'webp', WIDE)} sizes={WIDE_SIZES} width="1440" height="960"
+            alt="Aerial view of the Sydney Harbour Bridge and Opera House" fetchPriority="high"
+          />
+        </picture>
       </div>
       <div className="top">
         <p className="kick">ELOMA Group</p>
