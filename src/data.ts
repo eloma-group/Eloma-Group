@@ -19,6 +19,54 @@ export const SECTIONS: Record<string, string> = {
   contact: '/contact',
 }
 
+/* Title and description for each section URL; scripts/prerender.mjs writes them into that URL's <head> */
+export const SECTION_META: Record<string, { title: string; description: string }> = {
+  bivry: {
+    title: 'Bivry Logistics: Road Freight & Warehousing | ELOMA Group',
+    description: 'Bivry moves full and part loads Australia-wide with 24/7 GPS tracking, plus warehousing and distribution. Part of ELOMA Group.',
+  },
+  'eg-imports': {
+    title: 'EG Imports: Overseas Sourcing & Customs | ELOMA Group',
+    description: 'EG Imports handles overseas sourcing, shipping, customs compliance and landing for Australian businesses. Part of ELOMA Group.',
+  },
+  'eg-eloma': {
+    title: 'EG Eloma: Microsoft 365, IT & Cybersecurity | ELOMA Group',
+    description: 'Australian-owned Microsoft Partner for Microsoft 365, websites, software, SEO, toll-free numbers and cybersecurity, with 24/7 support.',
+  },
+  'eg-travels': {
+    title: 'EG Travels: Corporate & Leisure Travel | ELOMA Group',
+    description: 'EG Travels books flights, accommodation and tailored packages for corporate teams and leisure travellers. Part of ELOMA Group.',
+  },
+  'eloma-cx': {
+    title: 'ELOMA Customer Care: Inbound & Outbound Support',
+    description: 'Inbound, outbound and omnichannel customer care to an Australian standard: trained teams answering your customers by phone, email and chat.',
+  },
+  about: {
+    title: 'About ELOMA Group | Five Businesses, One Standard',
+    description: 'ELOMA Group brings together five Australian businesses in logistics, imports, IT, travel and customer care under one accountable group.',
+  },
+  services: {
+    title: 'Services: Freight, Imports, IT, Travel & Care | ELOMA Group',
+    description: 'Road freight, warehousing, import sourcing, IT and cybersecurity, business travel and customer care from one Australian group.',
+  },
+  presence: {
+    title: 'ELOMA Group Offices: Five Australian Capital Cities',
+    description: 'Visit ELOMA Group in Melbourne (head office, Collingwood), Sydney, Brisbane, Adelaide and Perth. Open Monday to Friday, 9am to 6pm.',
+  },
+  countries: {
+    title: 'Where We Work: AU, US, Canada, UK & NZ | ELOMA Group',
+    description: 'Australian-owned and serving five countries: Australia, the United States, Canada, the United Kingdom and New Zealand.',
+  },
+  community: {
+    title: 'Community: Supporting Red Cross Lifeblood | ELOMA Group',
+    description: "ELOMA Group is proud to support Australian Red Cross Lifeblood through blood donation drives with our people, clients and communities.",
+  },
+  contact: {
+    title: 'Contact ELOMA Group | 1800 054 555 · help@elomagroup.org',
+    description: 'Call 1800 054 555, email help@elomagroup.org or send an enquiry. Head office: 71 Gipps Street, Collingwood VIC 3066.',
+  },
+}
+
 export const PHONE = '1800 054 555'
 export const TEL = 'tel:+611800054555'
 export const EMAIL = 'help@elomagroup.org'
