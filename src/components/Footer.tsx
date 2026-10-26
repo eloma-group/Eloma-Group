@@ -36,7 +36,7 @@ export default function Footer() {
         <span><Icon d={BUILDING} />Eloma Group Of Companies Pty Ltd</span>
         <span><Icon d={DOC} />ABN {ABN}</span>
       </div>
-      <p>ELOMA Group © <span id="yr" suppressHydrationWarning>{new Date().getFullYear()}</span> · Australia · Photography: Unsplash (incl. Jamie Davies, Vitaly Gariev, Jelly Marketing)</p>
+      <p>ELOMA Group © <span id="yr" suppressHydrationWarning>{new Date().getFullYear()}</span> · Australia</p>
       <p>We acknowledge the Traditional Custodians of the lands on which we work and pay respect to Elders past and present.</p>
     </footer>
   )

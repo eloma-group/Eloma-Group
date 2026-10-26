@@ -1,4 +1,4 @@
-// One-off: builds the self-hosted photos in public/ from the Unsplash originals.
+// One-off: builds the self-hosted photos in public/ from the original source photos.
 // Run with `node scripts/images.mjs` after adding or changing a photo, then commit the output.
 // Existing files are skipped; pass --force to re-encode everything.
 import { access, mkdir, stat } from 'node:fs/promises'
@@ -9,7 +9,7 @@ const pub = fileURLToPath(new URL('../public/', import.meta.url))
 const force = process.argv.includes('--force')
 const QUALITY = { avif: 50, webp: 72 }
 
-/* Unsplash photo ids, by the name used in src/data.ts */
+/* Source photo ids, by the name used in src/data.ts */
 const PHOTOS = {
   harbour: '1546268060-2592ff93ee24',
   truck: '1766785368863-f2188a8c8b32',
@@ -22,7 +22,7 @@ const PHOTOS = {
   melbourne: '1545044846-351ba102b6d5',
 }
 
-/* Crops and widths per use. focusX centres the crop horizontally (0.5 = middle, as Unsplash did) */
+/* Crops and widths per use. focusX centres the crop horizontally (0.5 = middle) */
 const JOBS = [
   /* Hero: landscape for desktops/tablets; phone crop sits between the Opera House and the bridge (~33–69% across) */
   { photo: 'harbour', file: 'hero/wide', ratio: 3 / 2, widths: [960, 1440, 1920, 2560] },
