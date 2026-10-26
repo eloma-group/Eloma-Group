@@ -352,7 +352,7 @@ footer address{font-style:normal;margin-bottom:10px}
     </div>
   </div>
 </header>
-<div class="drawer" id="drawer" aria-hidden="true">
+<div class="drawer" id="drawer" aria-hidden="true" inert>
   <div class="panel" role="dialog" aria-label="Menu">
     <button class="x" id="drawerX" type="button" aria-label="Close menu">×</button>
     <a href="/">Home</a><a href="/bivry">Bivry · Logistics</a><a href="/eg-imports">EG Imports</a><a href="/eg-eloma">EG Eloma</a><a href="/eg-travels">EG Travels</a><a href="/eloma-customer-care">ELOMA Customer Care</a>
@@ -450,7 +450,7 @@ footer address{font-style:normal;margin-bottom:10px}
 </footer>
 <script>
 (function(){var d=document.getElementById("drawer"),m=document.getElementById("menuBtn");
-function o(x){d.classList.toggle("open",x);d.setAttribute("aria-hidden",String(!x));m.setAttribute("aria-expanded",String(x))}
+function o(x){d.classList.toggle("open",x);d.setAttribute("aria-hidden",String(!x));d.inert=!x;m.setAttribute("aria-expanded",String(x))}
 m.onclick=function(){o(true)};document.getElementById("drawerX").onclick=function(){o(false)};
 d.addEventListener("click",function(e){if(e.target===d||e.target.tagName==="A")o(false)});
 addEventListener("keydown",function(e){if(e.key==="Escape")o(false)});

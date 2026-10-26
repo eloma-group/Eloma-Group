@@ -20,7 +20,7 @@ export default function Drawer({ open, onClose }: Props) {
   }
 
   return (
-    <div className={`drawer${open ? ' open' : ''}`} id="drawer" aria-hidden={!open} onClick={onClick}>
+    <div className={`drawer${open ? ' open' : ''}`} id="drawer" aria-hidden={!open} inert={!open} onClick={onClick}>
       <div className="panel" role="dialog" aria-label="Menu">
         <button className="x" id="drawerX" type="button" aria-label="Close menu" onClick={onClose}>×</button>
         <a href={SECTIONS.bivry}>Bivry · Logistics</a><a href={SECTIONS['eg-imports']}>EG Imports</a><a href={SECTIONS['eg-eloma']}>EG Eloma</a><a href={SECTIONS['eg-travels']}>EG Travels</a><a href={SECTIONS['eloma-cx']}>ELOMA Customer Care</a>
